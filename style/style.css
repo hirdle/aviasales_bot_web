@@ -1,0 +1,129 @@
+* {
+    padding: 0;
+    margin: 0;
+    font: Arial, Helvetica, sans-serif;
+}
+
+body {
+    width: 100%;
+    background-color: #fff;
+}
+
+main {
+    width: 81%;
+    margin: 20px auto;
+    padding: 25px 2% 0 2%;
+    background-color: #f2f2f2;
+}
+
+form {
+    width: 100%;
+}
+
+.title {
+    font-size: 32px;
+}
+
+.form_block {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.form_block_item {
+    min-width: 100px;
+    margin: 0 0 15px 0;
+}
+
+.form_block_item__title {
+    font-size: 14px;
+    margin: 0 0 10px 0;
+}
+
+.text_input {
+    width: 60%;
+    min-width: 105px;
+    height: 30px;
+    background-color: #d2d2d2;
+    border: solid 1px #e5e5e5;
+    padding: 5px;
+}
+
+.date_input {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    min-width: 105px;
+}
+
+.date_input > input {
+    max-width: 40%;
+    min-width: 105px;
+    height: 30px;
+    background-color: #d2d2d2;
+    border: solid 1px #e5e5e5;
+}
+
+.watch {
+    width: 150px;
+    height: 40px;
+    border: solid 1px #96d5ff;
+    background-color: #46adf8;
+    margin-top: 24px;
+}
+
+select {
+    width: 105px;
+    min-width: 105px;
+    height: 30px;
+    background-color: #d2d2d2;
+    border: solid 1px #e5e5e5;
+    margin: 0 0 15px 0;
+    padding: 5px;
+}
+
+.checkbox {
+    height: 20px;
+    width: 20px;
+    background: #d2d2d2;
+    border: solid 1px #e5e5e5;
+
+    appearance: none;
+    margin: 0;
+
+    font: inherit;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+
+    display: grid;
+    place-content: center;
+}
+
+
+input[type="checkbox"]:checked::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+
+    border: solid 1px #000;
+    background: #000;
+}
+
+input[type="checkbox"]:hover {
+    cursor: pointer;
+}
+
+
+@media (max-width: 600px) {
+    main {
+        width: 86%;
+    }
+}
+
+@media (max-width: 850px) {
+    .second {
+        flex-direction: column;
+    }
+}

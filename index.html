@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <script>
+        function SendResult() {
+            let from = document.getElementById("from").value;
+            let where = document.getElementById("where").value;
+            let start_date = document.getElementById("start_date").value;
+            let end_date = document.getElementById("end_date").value;
+            let luggage = document.getElementById("luggage").checked;
+            let flying_class = document.getElementById("flying_class").value;
+            let without_transfer = document.getElementById("without_transfer").checked;
+            let without_visa = document.getElementById("without_visa").checked;
+
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+            today = yyyy + "-" + mm + '-' + dd;
+            
+            if (from != "" & where != "" & start_date != "" & end_date != "" ) {
+                if (start_date > end_date) {
+                    alert("Дата начала отслеживания должна быть меньше даты окончания отслеживания")
+                    
+                } else if (start_date < today){
+                    alert ("Дата начала отслеживания должна быть не раньше сегодняшней даты")
+                } else {
+                    try {
+                        let tg = window.Telegram.WebApp;
+                        let data = from + ";" + where + ";" + start_date + ";" + end_date +";" + flying_class +";" + luggage +";" + without_transfer +";" + without_visa
+                        tg.sendData(data)}
+                    catch(e) {
+                        alert(e.message)
+                    }
+                    
+
+                }
+            } else {
+                alert("Заполните все обязательные поля")
+            }
+        }
+    </script>
+
+    <main>
+        <p class="title">Добавить машрут для отслеживания</p>
+        <form action="">
+
+            <div class="form_block">
+                <div class="form_block_item">
+
+                    <p class="form_block_item__title">Откуда</p>
+                    <input type="text" class="text_input" id="from">
+
+                </div>
+                <div class="form_block_item">
+
+                    <p class="form_block_item__title">Куда</p>
+                    <input type="text" class="text_input" id="where">
+                    
+                </div>
+                <div class="form_block_item">
+
+                    <p class="form_block_item__title">Дата</p>
+
+                    <div class="date_input">
+                        <input type="date" id="start_date">
+                        <input type="date" id="end_date">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form_block second">
+                <div class="form_block_item">
+                    <p class="form_block_item__title">Класс перелёта</p>
+                    <select name="flying_class" id="flying_class">
+                        <option value="Y" selected="True">Эконом</option>
+                        <option value="W">Комфорт</option>
+                        <option value="C">Бизнес</option>
+                        <option value="F">Первый класс</option>
+                    </select>
+                </div>
+                <div class="form_block_item">
+                    <p class="form_block_item__title" name="luggage">Наличие багажа</p>
+                    <input type="checkbox" class="checkbox" id="luggage">
+                </div>
+                <div class="form_block_item">
+                    <p class="form_block_item__title" name="without_transfer">Без пересадок</p>
+                    <input type="checkbox" class="checkbox" id="without_transfer">
+                </div>
+                <div class="form_block_item">
+                    <p class="form_block_item__title" name="without_visa">Без визы для пересадок</p>
+                    <input type="checkbox" class="checkbox" id="without_visa">
+                </div>
+                <div class="form_block_item">
+                    <button name="watch" class="watch" onclick="SendResult()">Следить</button>
+                </div>
+            </div>
+        </form>
+    </main>
+
+    
+</body>
+</html>
